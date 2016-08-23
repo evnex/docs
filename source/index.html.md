@@ -69,23 +69,82 @@ ACT-  | -12V output for type 2 locking actuator
 
 <img src="images/bottomconnector.jpg">
 
+Name | Meaning
+---------- | -------
+GND   | Signal ground connection
+MENU  | Optional external menu button input (active low)
+GPO   | General purpose output connection (low side switch)
+12V   | Signal 12V output limited to XXmA
+PULSE | Pulse input for optional energy meter
+PILOT | Pilot signal control line
+PROX  | Type 2 connector proximity input
+GPI-  | Isolated general purpose negative input (select model)
+GPI+  | Isolated general purpose positive input (select model)
+
 ## Creating Account
+
+To use our online dashboard, you'll first have to head to the <a href="https://dashboard.evnex.io">EVNEX Dashboard</a> and create an account.
 
 ## Connecting to WiFi
 
+Once you've created your account, login and then click Account -> WiFi Configuration.
+
+<img src="images/setupwifi.png">
+
+Follow the instructions here, then log back into the dashboard to access your ACI. You may have to press the reset button on the ACI after WiFi setup before it shows up on the dashboard.
+
 ## Connection Modes
+
+Your ACI has a multicolor display backlight which is used to indicate device connection status at a glance.
+The following color codes show the status for each flash pattern.
+
+Todo
 
 # Interface
 
+Todo
+
 # GPI
+
+The GPI (General Purpose Input) is an optional voltage input that can be set up to control the behavour of the EVSE dependent on external conditions.
+
+The GPI takes a 0-12V signal which is displayed via the dashboard when enabled. The voltage input is fully isolated to 1kV over an optical isolation buffer. As such it is safe to be connected to home storage batteries or solar array voltages etc. provided that the voltage is appropriately stepped down to the 0-12V range.
+
+As the signal is processed over an optical buffer, it's accuracy is limited to about +/-0.5V.
+
+The GPI can be set up in dashboard to provide an array of functionality.
+
+COMING SOON
 
 # GPO
 
+The GPO (General Purpose Output) is an optional switched output rated at TBD that can be set up to switch external loads dependent on charge conditions.
+
+For example, the output could switch on a service light on a public charger to indicate 'in use'
+
+The GPO can be set up in the dashboard.
+
+COMING SOON
+
 # API
+
+The ACI is based on the Particle IoT platform, which means you can communicate with your ACI over an enterprise grade, secure API. We've abstracted charging functions and variables on top of the Particle API to give you easy access to device configuration and statistics. You can chose to use either the Particle REST API, or the Javascript API. For each example, select 'shell' for the REST API example or 'javascript' for the JS API example at the top of the code window.
 
 ## Basics
 
+The API host is "https://api.particle.io", all requests are encrypted via TLS.
+
+For our REST examples, we'll assume a terminal is being used for testing, as such 'curl' is prepended (a command line tool for testing client-side URL transfers).
+
 ## Authentication
+
+Each EVNEX account has an associated unique access token that is used to authenticate all API requests. Your access token will expire every 90 days.
+
+The easiest way to find your access token is by logging into the dashboard at dashboard.evnex.io, you'll find it on the first page.
+
+In the examples below replace '1234' with your own access token.
+
+<aside class="warning">This access token is the key to your device and shouldn't be shared.</aside>
 
 ## Logging In
 
