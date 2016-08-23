@@ -297,7 +297,18 @@ The following color codes show the status for each flash pattern.</p>
 
 <p>The ACI is based on the Particle IoT platform, which means you can communicate with your ACI over an enterprise grade, secure API. We&rsquo;ve abstracted charging functions and variables on top of the Particle API to give you easy access to device configuration and statistics. You can chose to use either the Particle REST API, or the Javascript API. For each example, select &#39;shell&rsquo; for the REST API example or &#39;javascript&rsquo; for the JS API example at the top of the code window.</p>
 
-<h2 id="basics">Basics</h2>
+<h2 id="setting-up">Setting Up</h2>
+
+<blockquote>
+<p>If using Node.js:
+$ npm install particle-api-js</p>
+
+<p>Or bower:
+bower install particle-api-js</p>
+
+<p>Or for client side HTML include:
+<script type="text/javascript" src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"> </script></p>
+</blockquote>
 
 <p>The API host is &ldquo;https://api.particle.io&rdquo;, all requests are encrypted via TLS.</p>
 
@@ -314,24 +325,12 @@ The following color codes show the status for each flash pattern.</p>
 <aside class="warning">This access token is the key to your device and shouldn&rsquo;t be shared.</aside>
 
 <h2 id="logging-in">Logging In</h2>
-
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight javascript"><code><span class="err">#</span> <span class="nx">If</span> <span class="nx">using</span> <span class="nx">Node</span><span class="p">.</span><span class="nx">js</span><span class="err">:</span>
-<span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">particle</span><span class="o">-</span><span class="nx">api</span><span class="o">-</span><span class="nx">js</span>
-
-<span class="err">#</span> <span class="nx">Or</span> <span class="nx">bower</span><span class="err">:</span>
-<span class="nx">$</span> <span class="nx">bower</span> <span class="nx">install</span> <span class="nx">particle</span><span class="o">-</span><span class="nx">api</span><span class="o">-</span><span class="nx">js</span>
-
-<span class="err">#</span> <span class="nx">Or</span> <span class="k">for</span> <span class="nx">client</span> <span class="nx">side</span> <span class="nx">HTML</span> <span class="nx">include</span><span class="err">:</span>
-<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text/javascript"</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span>
-<span class="err">#</span> <span class="nx">Create</span> <span class="nx">a</span> <span class="k">new</span> <span class="nx">particle</span> <span class="nx">object</span> <span class="nx">like</span> <span class="nx">so</span><span class="err">:</span>
+<pre class="highlight javascript"><code>
+<span class="c1">// Create a new particle object like so:</span>
 <span class="kd">var</span> <span class="nx">Particle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'particle-api-js'</span><span class="p">);</span> 
 <span class="kd">var</span> <span class="nx">particle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Particle</span><span class="p">();</span>
 
-<span class="err">#</span> <span class="nx">Logging</span> <span class="k">in</span><span class="err">:</span>
+<span class="c1">// Logging in:</span>
 <span class="nx">particle</span><span class="p">.</span><span class="nx">login</span><span class="p">({</span><span class="na">username</span><span class="p">:</span> <span class="s1">'email@example.com'</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="s1">'pass'</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span>
   <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'API call completed on promise resolve: '</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">access_token</span><span class="p">);</span>
