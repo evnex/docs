@@ -131,7 +131,16 @@ COMING SOON
 
 The ACI is based on the Particle IoT platform, which means you can communicate with your ACI over an enterprise grade, secure API. We've abstracted charging functions and variables on top of the Particle API to give you easy access to device configuration and statistics. You can chose to use either the Particle REST API, or the Javascript API. For each example, select 'shell' for the REST API example or 'javascript' for the JS API example at the top of the code window.
 
-## Basics
+## Setting Up
+
+> If using Node.js:
+> $ npm install particle-api-js
+
+> Or bower:
+> bower install particle-api-js
+
+> Or for client side HTML include:
+> <script type="text/javascript" src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"> </script>
 
 The API host is "https://api.particle.io", all requests are encrypted via TLS.
 
@@ -149,23 +158,13 @@ In the examples below replace '1234' with your own access token.
 
 ## Logging In
 
-> To authorize, use this code:
-
 ```javascript
-# If using Node.js:
-$ npm install particle-api-js
 
-# Or bower:
-$ bower install particle-api-js
-
-# Or for client side HTML include:
-<script type="text/javascript" src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"> </script>
-
-# Create a new particle object like so:
+// Create a new particle object like so:
 var Particle = require('particle-api-js'); 
 var particle = new Particle();
 
-# Logging in:
+// Logging in:
 particle.login({username: 'email@example.com', password: 'pass'}).then(
   function(data){
     console.log('API call completed on promise resolve: ', data.body.access_token);
