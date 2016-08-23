@@ -134,18 +134,15 @@ The ACI is based on the Particle IoT platform, which means you can communicate w
 
 ## Setting Up
 
-> If using Node.js:
-
+If using Node.js:
 > $ npm install particle-api-js
 
 
-> Or bower:
-
+Or bower:
 > bower install particle-api-js
 
 
-> Or for client side HTML include:
-
+Or for client side HTML include:
 > <script type="text/javascript" src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"> </script>
 
 The API host is "https://api.particle.io", all requests are encrypted via TLS.
