@@ -16,7 +16,8 @@ search: true
 
 # Introduction
 
-Welcome to the EVNEX Docs & API! You'll find everything here, right through from setting up and configuring your hardware, to more advanced features such as API use and proportional charging.
+Welcome to the EVNEX Docs & API! 
+You'll find everything here, right through from setting up and configuring your hardware, to more advanced features such as API use and proportional charging.
 
 # Supported Browsers
 
@@ -150,29 +151,35 @@ In the examples below replace '1234' with your own access token.
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
+```javascript
+# If using Node.js:
+$ npm install particle-api-js
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+# Or bower:
+$ bower install particle-api-js
 
-```python
-import kittn
+# Or for client side HTML include:
+<script type="text/javascript" src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"> </script>
 
-api = kittn.authorize('meowmeowmeow')
+# Create a new particle object like so:
+var Particle = require('particle-api-js'); 
+var particle = new Particle();
+
+# Logging in:
+particle.login({username: 'email@example.com', password: 'pass'}).then(
+  function(data){
+    console.log('API call completed on promise resolve: ', data.body.access_token);
+  },
+  function(err) {
+    console.log('API call completed on promise fail: ', err);
+  }
+);
 ```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+# When using the REST API, you won't log in per se, instead you'll pass the access token with each request
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
