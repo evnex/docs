@@ -17,6 +17,7 @@ search: true
 # Introduction
 
 Welcome to the EVNEX Docs & API! 
+
 You'll find everything here, right through from setting up and configuring your hardware, to more advanced features such as API use and proportional charging.
 
 # Supported Browsers
@@ -134,12 +135,17 @@ The ACI is based on the Particle IoT platform, which means you can communicate w
 ## Setting Up
 
 > If using Node.js:
+
 > $ npm install particle-api-js
 
+
 > Or bower:
+
 > bower install particle-api-js
 
+
 > Or for client side HTML include:
+
 > <script type="text/javascript" src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"> </script>
 
 The API host is "https://api.particle.io", all requests are encrypted via TLS.
