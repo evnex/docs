@@ -20,7 +20,7 @@ Welcome to the EVNEX Docs & API! You'll find everything here, right through from
 
 # Supported Browsers
 
-<img src="supportedbrowsers.png">
+<img src="images/supportedbrowsers.png">
 
 # EVSE Basics
 
