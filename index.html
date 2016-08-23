@@ -155,27 +155,162 @@ Internet Explorer is not currently supported
 
 <p><img src="images/topconnector.jpg"></p>
 
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>GND</td>
+<td>Power ground connection</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Power neutral connection</td>
+</tr>
+<tr>
+<td>L</td>
+<td>Power live (phase) connection</td>
+</tr>
+<tr>
+<td>CN-N</td>
+<td>Contactor neutral power connection (230V)</td>
+</tr>
+<tr>
+<td>CN-L</td>
+<td>Contactor live (phase) power connection (230V)</td>
+</tr>
+<tr>
+<td>SENSE</td>
+<td>Contactor live sense input (connect to live line of contactor on the switched vehicle side)</td>
+</tr>
+<tr>
+<td>ACTFB</td>
+<td>Type 2 locking actuator feedback input</td>
+</tr>
+<tr>
+<td>ACT+</td>
+<td>+12V output for type 2 locking actuator</td>
+</tr>
+<tr>
+<td>ACT-</td>
+<td>-12V output for type 2 locking actuator</td>
+</tr>
+</tbody></table>
+
 <h3 id="bottom-connector">Bottom Connector</h3>
 
 <p><img src="images/bottomconnector.jpg"></p>
 
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>GND</td>
+<td>Signal ground connection</td>
+</tr>
+<tr>
+<td>MENU</td>
+<td>Optional external menu button input (active low)</td>
+</tr>
+<tr>
+<td>GPO</td>
+<td>General purpose output connection (low side switch)</td>
+</tr>
+<tr>
+<td>12V</td>
+<td>Signal 12V output limited to XXmA</td>
+</tr>
+<tr>
+<td>PULSE</td>
+<td>Pulse input for optional energy meter</td>
+</tr>
+<tr>
+<td>PILOT</td>
+<td>Pilot signal control line</td>
+</tr>
+<tr>
+<td>PROX</td>
+<td>Type 2 connector proximity input</td>
+</tr>
+<tr>
+<td>GPI-</td>
+<td>Isolated general purpose negative input (select model)</td>
+</tr>
+<tr>
+<td>GPI+</td>
+<td>Isolated general purpose positive input (select model)</td>
+</tr>
+</tbody></table>
+
 <h2 id="creating-account">Creating Account</h2>
+
+<p>To use our online dashboard, you&rsquo;ll first have to head to the <a href="https://dashboard.evnex.io">EVNEX Dashboard</a> and create an account.</p>
 
 <h2 id="connecting-to-wifi">Connecting to WiFi</h2>
 
+<p>Once you&rsquo;ve created your account, login and then click Account -&gt; WiFi Configuration.</p>
+
+<p><img src="images/setupwifi.png"></p>
+
+<p>Follow the instructions here, then log back into the dashboard to access your ACI. You may have to press the reset button on the ACI after WiFi setup before it shows up on the dashboard.</p>
+
 <h2 id="connection-modes">Connection Modes</h2>
+
+<p>Your ACI has a multicolor display backlight which is used to indicate device connection status at a glance.
+The following color codes show the status for each flash pattern.</p>
+
+<p>Todo</p>
 
 <h1 id="interface">Interface</h1>
 
+<p>Todo</p>
+
 <h1 id="gpi">GPI</h1>
+
+<p>The GPI (General Purpose Input) is an optional voltage input that can be set up to control the behavour of the EVSE dependent on external conditions.</p>
+
+<p>The GPI takes a 0-12V signal which is displayed via the dashboard when enabled. The voltage input is fully isolated to 1kV over an optical isolation buffer. As such it is safe to be connected to home storage batteries or solar array voltages etc. provided that the voltage is appropriately stepped down to the 0-12V range.</p>
+
+<p>As the signal is processed over an optical buffer, it&rsquo;s accuracy is limited to about +/-0.5V.</p>
+
+<p>The GPI can be set up in dashboard to provide an array of functionality.</p>
+
+<p>COMING SOON</p>
 
 <h1 id="gpo">GPO</h1>
 
+<p>The GPO (General Purpose Output) is an optional switched output rated at TBD that can be set up to switch external loads dependent on charge conditions.</p>
+
+<p>For example, the output could switch on a service light on a public charger to indicate &lsquo;in use&rsquo;</p>
+
+<p>The GPO can be set up in the dashboard.</p>
+
+<p>COMING SOON</p>
+
 <h1 id="api">API</h1>
+
+<p>The ACI is based on the Particle IoT platform, which means you can communicate with your ACI over an enterprise grade, secure API. We&rsquo;ve abstracted charging functions and variables on top of the Particle API to give you easy access to device configuration and statistics. You can chose to use either the Particle REST API, or the Javascript API. For each example, select &#39;shell&rsquo; for the REST API example or &#39;javascript&rsquo; for the JS API example at the top of the code window.</p>
 
 <h2 id="basics">Basics</h2>
 
+<p>The API host is &ldquo;https://api.particle.io&rdquo;, all requests are encrypted via TLS.</p>
+
+<p>For our REST examples, we&rsquo;ll assume a terminal is being used for testing, as such &#39;curl&rsquo; is prepended (a command line tool for testing client-side URL transfers).</p>
+
 <h2 id="authentication">Authentication</h2>
+
+<p>Each EVNEX account has an associated unique access token that is used to authenticate all API requests. Your access token will expire every 90 days.</p>
+
+<p>The easiest way to find your access token is by logging into the dashboard at dashboard.evnex.io, you&rsquo;ll find it on the first page.</p>
+
+<p>In the examples below replace &#39;1234&rsquo; with your own access token.</p>
+
+<aside class="warning">This access token is the key to your device and shouldn&rsquo;t be shared.</aside>
 
 <h2 id="logging-in">Logging In</h2>
 
