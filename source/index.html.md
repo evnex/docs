@@ -38,6 +38,8 @@ For more information, one of the most common charge standards is described below
 
 # Setting Up
 
+<img src="images/connectingantenna.png">
+
 Your ACI comes with a 2dBi RP-SMA antenna which can be swapped for a larger, higher gain antenna if required. Simply thread this into the connector on the ACI enclosure as shown below. It is recommended to do this after connecting to the screw terminal block to ease screwdriver access.
 
 ## Installation
@@ -45,6 +47,14 @@ Your ACI comes with a 2dBi RP-SMA antenna which can be swapped for a larger, hig
 todo
 
 ## Screw Terminal Connections
+
+### Top Connector
+
+<img src="images/topconnector.jpg">
+
+### Bottom Connector
+
+<img src="images/bottomconnector.jpg">
 
 ## Creating Account
 
