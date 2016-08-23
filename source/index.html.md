@@ -22,13 +22,27 @@ Welcome to the EVNEX Docs & API! You'll find everything here, right through from
 
 <img src="images/supportedbrowsers.png">
 
+<aside class="notice">
+Internet Explorer is not currently supported
+</aside>
+
 # EVSE Basics
 
-## J1772
+Electric Vehicle Supply Equipment (EVSE) is the link between the wall plug and your electric vehicles charge system. Although often referred to as a ‘charger’ an AC EVSE does not directly manage the charging of your vehicle battery, this is done by electronics within the vehicle.
+
+What an EVSE does do is ensure that the process of plugging in, charging and unplugging is managed in a safe, controlled manner. In short, the EVSE is responsible for communicating with the vehicle how much power it is able to provide, while providing safety features that mean the cord is never electrified when not attached to the vehicle. It will also disable power should a fault occur inside the vehicle.
+
+For more information, one of the most common charge standards is described below.
+
+## Connection Types
 
 # Setting Up
 
+Your ACI comes with a 2dBi RP-SMA antenna which can be swapped for a larger, higher gain antenna if required. Simply thread this into the connector on the ACI enclosure as shown below. It is recommended to do this after connecting to the screw terminal block to ease screwdriver access.
+
 ## Installation
+
+todo
 
 ## Screw Terminal Connections
 
