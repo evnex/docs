@@ -52,6 +52,19 @@ todo
 
 <img src="images/topconnector.jpg">
 
+Name | Meaning
+---------- | -------
+GND   | Power ground connection
+N     | Power neutral connection
+L     | Power live (phase) connection
+CN-N  | Contactor neutral power connection (230V)
+CN-L  | Contactor live (phase) power connection (230V)
+SENSE | Contactor live sense input (connect to live line of contactor on the switched vehicle side)
+ACTFB | Type 2 locking actuator feedback input
+ACT+  | +12V output for type 2 locking actuator
+ACT-  | -12V output for type 2 locking actuator
+
+
 ### Bottom Connector
 
 <img src="images/bottomconnector.jpg">
