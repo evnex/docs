@@ -20,6 +20,8 @@ Welcome to the EVNEX Docs & API! You'll find everything here, right through from
 
 # Supported Browsers
 
+<img src="supportedbrowsers.png">
+
 # EVSE Basics
 
 ## J1772
