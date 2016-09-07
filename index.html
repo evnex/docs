@@ -375,40 +375,49 @@ Irrelevant of the operation, the process for calling a function is the same, we 
 </tr>
 </thead><tbody>
 <tr>
-<td><accessToken></td>
+<td>accessToken</td>
 <td>Your unique access token</td>
 <td>ab12xxxxcd34</td>
 </tr>
 <tr>
-<td><deviceID></td>
+<td>deviceID</td>
 <td>The device ID for the device you&rsquo;re accessing</td>
 <td>1234xxxx5678</td>
 </tr>
 <tr>
-<td><functionName></td>
-<td>The name of the function and argument value</td>
+<td>functionName</td>
+<td>The name of the function</td>
+<td>&#39;setConfig&rsquo;</td>
+</tr>
+<tr>
+<td>argName</td>
+<td>The argument to pass to the function</td>
 <td>&#39;MODE&rsquo;</td>
 </tr>
 <tr>
-<td><functionArg></td>
-<td>The argument to pass to the function</td>
+<td>argValue</td>
+<td>The integer value of the argument to pass to the function</td>
 <td>0</td>
 </tr>
 </tbody></table>
 
-<p>Instead of copying the same code each time, we&rsquo;ll just document the function name e.g. &#39;MODE&rsquo; and the allowable function arguments.</p>
+<p>Instead of copying the same code each time, we&rsquo;ll just document the function name e.g. &#39;setConfig&rsquo;, the argument name e.g. &#39;MODE&rsquo; and the allowable function arguments.</p>
 
 <aside class="notice">
-We pass <functionName> and <functionArg> together with a comma separation, as these are parsed at the device end. e.g. 'MODE,'0
+We pass <argName> and <argValue> together with a comma separation, as these are parsed at the device end. e.g. 'MODE,'0
 </aside>
 
 <h2 id="setting-charger-mode">Setting Charger Mode</h2>
 
 <h3 id="function-name">Function Name:</h3>
 
-<p><code class="prettyprint">MODE</code></p>
+<p><code class="prettyprint">setConfig</code></p>
 
-<h3 id="allowable-arguments">Allowable Arguments</h3>
+<h3 id="argument-name">Argument Name:</h3>
+
+<p>&#39;MODE&rsquo;</p>
+
+<h3 id="allowable-argument-values">Allowable Argument Values</h3>
 
 <table><thead>
 <tr>
@@ -438,8 +447,6 @@ We pass <functionName> and <functionArg> together with a comma separation, as th
 <td>3</td>
 </tr>
 </tbody></table>
-
-<p>To change the mode, pass &#39;value&rsquo; with argument &#39;MODE&rsquo; into the &#39;setConfig&rsquo; function</p>
 
 <h1 id="kittens">Kittens</h1>
 
