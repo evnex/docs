@@ -25,7 +25,7 @@ You'll find everything here, right through from setting up and configuring your 
 <img src="images/supportedbrowsers.png">
 
 <aside class="notice">
-Internet Explorer is not currently supported
+Internet Explorer/Edge is not currently supported as it lacks support for server sent events. This feature is currently <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/serversenteventseventsource/">under consideration</a> for Microsoft Edge.
 </aside>
 
 # EVSE Basics
@@ -342,4 +342,4 @@ TEMP | Device temperature
 
 # OCPP
 
-
+OCPP is currently awaiting deployment...
