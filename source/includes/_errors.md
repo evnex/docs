@@ -1,6 +1,6 @@
 # Errors
 
-<aside class="notice">The Kittn API uses the following error codes:</aside>
+<aside class="notice">The Particle API uses the following error codes:</aside>
 
 Error Code | Meaning
 ---------- | -------
