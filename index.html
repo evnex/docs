@@ -329,8 +329,7 @@ The above operations are necessary only when using the JS API.
 <aside class="warning">This access token is the key to your device and shouldn&rsquo;t be shared.</aside>
 
 <h2 id="logging-in">Logging In</h2>
-<pre class="highlight javascript"><code>
-<span class="c1">// Create a new particle object like so:</span>
+<pre class="highlight javascript"><code><span class="c1">// Create a new particle object like so:</span>
 <span class="kd">var</span> <span class="nx">Particle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'particle-api-js'</span><span class="p">);</span> <span class="c1">//Not required for client side use</span>
 <span class="kd">var</span> <span class="nx">particle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Particle</span><span class="p">();</span>
 
@@ -414,17 +413,18 @@ We pass `argName` and `argValue` together with a comma separation, as these are 
 <h2 id="setting-charger-mode">Setting Charger Mode</h2>
 
 <blockquote>
-<p>This will set the charger mode to &#39;disabled&rsquo;</p>
+<p>This will set the charger mode to &#39;disabled&rsquo;
+&ldquo;`javascript
+var fnPr = particle.callFunction({ deviceId: deviceID[selectedDeviceIndex], name: &#39;setConfig&rsquo;, argument: &#39;MODE,&rsquo;+0, auth: accessToken });</p>
 </blockquote>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">fnPr</span> <span class="o">=</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">callFunction</span><span class="p">({</span> <span class="na">deviceId</span><span class="p">:</span> <span class="nx">deviceID</span><span class="p">[</span><span class="nx">selectedDeviceIndex</span><span class="p">],</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'setConfig'</span><span class="p">,</span> <span class="na">argument</span><span class="p">:</span> <span class="s1">'MODE,'</span><span class="o">+</span><span class="mi">0</span><span class="p">,</span> <span class="na">auth</span><span class="p">:</span> <span class="nx">accessToken</span> <span class="p">});</span>
 
-  <span class="nx">fnPr</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
-    <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">//console.log('Function called succesfully:', data);</span>
-    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'An error occurred:'</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
-    <span class="p">});</span>
-</code></pre>
+<p>fnPr.then(
+    function(data) {
+      //console.log(&#39;Function called succesfully:&rsquo;, data);
+    }, function(err) {
+      console.log(&#39;An error occurred:&rsquo;, err);
+    });
+&rdquo;`</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl https://api.particle.io/v1/devices/deviceID/setConfig -d <span class="nv">arg</span><span class="o">=</span><span class="s2">"MODE,0"</span> -d <span class="nv">access_token</span><span class="o">=</span>accessToken
 </code></pre>
 
