@@ -600,9 +600,7 @@ To subscribe to these data streams we need to set up an event listener.</p>
 
           <h1 id="errors">Errors</h1>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<aside class="notice">The Particle API uses the following error codes:</aside>
 
 <table><thead>
 <tr>
@@ -611,48 +609,32 @@ To subscribe to these data streams we need to set up an event listener.</p>
 </tr>
 </thead><tbody>
 <tr>
+<td>200</td>
+<td>API call successfully delivered to the device and executed.</td>
+</tr>
+<tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Your request is not understood by the device, or the requested subresource (variable/function) has not been exposed.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>Unauthorized - Your access token is not valid.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden - Your access token is not authorized to interface with this device.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found - The device you requested is not currently connected to the cloud.</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>408</td>
+<td>Timed Out - The cloud experienced a significant delay when trying to reach the device.</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Server errors - Fail whale. Something&rsquo;s wrong on our end.</td>
 </tr>
 </tbody></table>
 
