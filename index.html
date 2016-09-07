@@ -326,8 +326,6 @@ The above operations are necessary only when using the JS API.
 
 <p>The easiest way to find your access token is by logging into the dashboard at dashboard.evnex.io, you&rsquo;ll find it on the first page.</p>
 
-<p>In the examples below replace &#39;1234&rsquo; with your own access token.</p>
-
 <aside class="warning">This access token is the key to your device and shouldn&rsquo;t be shared.</aside>
 
 <h2 id="logging-in">Logging In</h2>
@@ -347,19 +345,74 @@ The above operations are necessary only when using the JS API.
 <span class="p">);</span>
 </code></pre>
 
-<p>The Particle JS API uses <a href "https://spring.io/understanding/javascript-promises" target="_blank">promises</a> in the example shown, this enables easy handling of success/failure results for the login request.</p>
+<p>The Particle JS API uses <a href="https://spring.io/understanding/javascript-promises" target="_blank">promises</a>, in the example shown this enables easy handling of success/failure results for the login request.</p>
 
 <aside class="notice">
 No login is required when using the REST API, instead you&rsquo;ll pass your access token through with each request.
 </aside>
 
-<h2 id="setting-charger-mode">Setting Charger Mode</h2>
+<h2 id="introduction-to-functions">Introduction to Functions</h2>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">fnPr</span> <span class="o">=</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">callFunction</span><span class="p">({</span> <span class="na">deviceId</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">deviceID</span><span class="o">&gt;</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'setConfig'</span><span class="p">,</span> <span class="na">argument</span><span class="p">:</span> <span class="s1">'&lt;functionName&gt;,'</span><span class="o">+&lt;</span><span class="nx">functionArg</span><span class="o">&gt;</span><span class="p">,</span> <span class="na">auth</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">accessToken</span><span class="o">&gt;</span> <span class="p">});</span>
 
-<p>The ACI has four mode settings:</p>
+  <span class="nx">fnPr</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Function called succesfully:'</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'An error occurred:'</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre>
+<pre class="highlight shell"><code>
+</code></pre>
+
+<p>To change settings on the ACI, we utilise &#39;device functions&rsquo;.
+Irrelevant of the operation, the process for calling a function is the same, we pass in the the following data:</p>
 
 <table><thead>
 <tr>
-<th>State</th>
+<th>Argument</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><accessToken></td>
+<td>Your unique access token</td>
+<td>ab12xxxxcd34</td>
+</tr>
+<tr>
+<td><deviceID></td>
+<td>The device ID for the device you&rsquo;re accessing</td>
+<td>1234xxxx5678</td>
+</tr>
+<tr>
+<td><functionName></td>
+<td>The name of the function and argument value</td>
+<td>&#39;MODE&rsquo;</td>
+</tr>
+<tr>
+<td><functionArg></td>
+<td>The argument to pass to the function</td>
+<td>0</td>
+</tr>
+</tbody></table>
+
+<p>Instead of copying the same code each time, we&rsquo;ll just document the function name e.g. &#39;MODE&rsquo; and the allowable function arguments.</p>
+
+<aside class="notice">
+We pass <functionName> and <functionArg> together with a comma separation, as these are parsed at the device end. e.g. 'MODE,'0
+</aside>
+
+<h2 id="setting-charger-mode">Setting Charger Mode</h2>
+
+<h3 id="function-name">Function Name:</h3>
+
+<p><code class="prettyprint">MODE</code></p>
+
+<h3 id="allowable-arguments">Allowable Arguments</h3>
+
+<table><thead>
+<tr>
+<th>Mode</th>
 <th>Meaning</th>
 <th>Value</th>
 </tr>
@@ -387,17 +440,6 @@ No login is required when using the REST API, instead you&rsquo;ll pass your acc
 </tbody></table>
 
 <p>To change the mode, pass &#39;value&rsquo; with argument &#39;MODE&rsquo; into the &#39;setConfig&rsquo; function</p>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">fnPr</span> <span class="o">=</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">callFunction</span><span class="p">({</span> <span class="na">deviceId</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">deviceID</span><span class="o">&gt;</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'setConfig'</span><span class="p">,</span> <span class="na">argument</span><span class="p">:</span> <span class="s1">'MODE,'</span><span class="o">+&lt;</span><span class="nx">modeInt</span><span class="o">&gt;</span><span class="p">,</span> <span class="na">auth</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">accessToken</span><span class="o">&gt;</span> <span class="p">});</span>
-
-  <span class="nx">fnPr</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
-    <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Function called succesfully:'</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
-    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'An error occurred:'</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
-    <span class="p">});</span>
-</code></pre>
-<pre class="highlight shell"><code>
-</code></pre>
 
 <h1 id="kittens">Kittens</h1>
 
