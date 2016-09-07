@@ -205,24 +205,29 @@ Irrelevant of the operation, the process for calling a function is the same, we 
 
 Argument | Meaning | Example
 ---------- | ------- | ------
-<accessToken>  | Your unique access token | ab12xxxxcd34
-<deviceID>   | The device ID for the device you're accessing | 1234xxxx5678
-<functionName>  |  The name of the function and argument value | 'MODE'
-<functionArg>  | The argument to pass to the function | 0
+accessToken  | Your unique access token | ab12xxxxcd34
+deviceID   | The device ID for the device you're accessing | 1234xxxx5678
+functionName  |  The name of the function | 'setConfig'
+argName  | The argument to pass to the function | 'MODE'
+argValue | The integer value of the argument to pass to the function | 0
 
-Instead of copying the same code each time, we'll just document the function name e.g. 'MODE' and the allowable function arguments.
+Instead of copying the same code each time, we'll just document the function name e.g. 'setConfig', the argument name e.g. 'MODE' and the allowable function arguments.
 
 <aside class="notice">
-We pass <functionName> and <functionArg> together with a comma separation, as these are parsed at the device end. e.g. 'MODE,'0
+We pass <argName> and <argValue> together with a comma separation, as these are parsed at the device end. e.g. 'MODE,'0
 </aside>
 
 ## Setting Charger Mode
 
 ### Function Name:
 
-`MODE`
+`setConfig`
 
-### Allowable Arguments
+### Argument Name:
+
+'MODE'
+
+### Allowable Argument Values
 
 Mode | Meaning | Value
 ---------- | ------- | -------
@@ -231,7 +236,6 @@ ENABLED  | EVSE Enabled (normal mode) | 1
 TIMER   | Timer Mode | 2
 OCPP   | Open Charge Point Protocol Mode (ignores user input) | 3
 
-To change the mode, pass 'value' with argument 'MODE' into the 'setConfig' function
 
 # Kittens
 
