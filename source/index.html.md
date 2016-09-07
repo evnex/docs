@@ -223,6 +223,23 @@ We pass `argName` and `argValue` together with a comma separation, as these are 
 
 ## Setting Charger Mode
 
+> This will set the charger mode to 'disabled'
+
+```javascript
+var fnPr = particle.callFunction({ deviceId: deviceID[selectedDeviceIndex], name: 'setConfig', argument: 'MODE,'+0, auth: accessToken });
+
+  fnPr.then(
+    function(data) {
+      //console.log('Function called succesfully:', data);
+    }, function(err) {
+      console.log('An error occurred:', err);
+    });
+```
+
+```shell
+$ curl https://api.particle.io/v1/devices/deviceID/setConfig -d arg="MODE,0" -d access_token=accessToken
+```
+
 ### Function Name:
 
 `setConfig`
@@ -240,6 +257,9 @@ ENABLED  | EVSE Enabled (normal mode) | 1
 TIMER   | Timer Mode | 2
 OCPP   | Open Charge Point Protocol Mode (ignores user input) | 3
 
+<aside class="success">
+We've included an example here to get you started!
+</aside>
 
 # Kittens
 
