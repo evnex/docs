@@ -157,8 +157,6 @@ Each EVNEX account has an associated unique access token that is used to authent
 
 The easiest way to find your access token is by logging into the dashboard at dashboard.evnex.io, you'll find it on the first page.
 
-In the examples below replace '1234' with your own access token.
-
 <aside class="warning">This access token is the key to your device and shouldn't be shared.</aside>
 
 ## Logging In
@@ -179,27 +177,16 @@ particle.login({username: 'email@example.com', password: 'pass'}).then(
   }
 );
 ```
-The Particle JS API uses <a href "https://spring.io/understanding/javascript-promises" target="_blank">promises</a> in the example shown, this enables easy handling of success/failure results for the login request.
+The Particle JS API uses <a href="https://spring.io/understanding/javascript-promises" target="_blank">promises</a>, in the example shown this enables easy handling of success/failure results for the login request.
 
 <aside class="notice">
 No login is required when using the REST API, instead you'll pass your access token through with each request.
 </aside>
 
-## Setting Charger Mode
-
-The ACI has four mode settings:
-
-State | Meaning | Value
----------- | ------- | -------
-DISABLED   | EVSE Disabled | 0
-ENABLED  | EVSE Enabled (normal mode) | 1
-TIMER   | Timer Mode | 2
-OCPP   | Open Charge Point Protocol Mode (ignores user input) | 3
-
-To change the mode, pass 'value' with argument 'MODE' into the 'setConfig' function
+## Introduction to Functions
 
 ```javascript
-var fnPr = particle.callFunction({ deviceId: <deviceID>, name: 'setConfig', argument: 'MODE,'+<modeInt>, auth: <accessToken> });
+var fnPr = particle.callFunction({ deviceId: <deviceID>, name: 'setConfig', argument: '<functionName>,'+<functionArg>, auth: <accessToken> });
 
   fnPr.then(
     function(data) {
@@ -212,6 +199,39 @@ var fnPr = particle.callFunction({ deviceId: <deviceID>, name: 'setConfig', argu
 ```shell
 
 ```
+
+To change settings on the ACI, we utilise 'device functions'.
+Irrelevant of the operation, the process for calling a function is the same, we pass in the the following data:
+
+Argument | Meaning | Example
+---------- | ------- | ------
+<accessToken>  | Your unique access token | ab12xxxxcd34
+<deviceID>   | The device ID for the device you're accessing | 1234xxxx5678
+<functionName>  |  The name of the function and argument value | 'MODE'
+<functionArg>  | The argument to pass to the function | 0
+
+Instead of copying the same code each time, we'll just document the function name e.g. 'MODE' and the allowable function arguments.
+
+<aside class="notice">
+We pass <functionName> and <functionArg> together with a comma separation, as these are parsed at the device end. e.g. 'MODE,'0
+</aside>
+
+## Setting Charger Mode
+
+### Function Name:
+
+`MODE`
+
+### Allowable Arguments
+
+Mode | Meaning | Value
+---------- | ------- | -------
+DISABLED   | EVSE Disabled | 0
+ENABLED  | EVSE Enabled (normal mode) | 1
+TIMER   | Timer Mode | 2
+OCPP   | Open Charge Point Protocol Mode (ignores user input) | 3
+
+To change the mode, pass 'value' with argument 'MODE' into the 'setConfig' function
 
 # Kittens
 
