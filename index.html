@@ -308,13 +308,15 @@ The following color codes show the status for each flash pattern.</p>
 
 <p><code class="prettyprint">bower install particle-api-js</code></p>
 
-<p>Or for client side HTML include:</p>
+<h3 id="or-for-client-side-html-include">Or for client side HTML include:</h3>
 
-<blockquote>
-<script type="text/javascript" src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"> </script>
-</blockquote>
+<p><code class="prettyprint">&lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.jsdelivr.net/particle-api-js/5/particle.min.js&quot;&gt; &lt;/script&gt;</code></p>
 
-<p>The API host is &ldquo;https://api.particle.io&rdquo;, all requests are encrypted via TLS.</p>
+<aside class="notice">
+The above operations are necessary only when using the JS API.
+</aside>
+
+<p>The REST API host is &ldquo;https://api.particle.io&rdquo;, all requests are encrypted via TLS.</p>
 
 <p>For our REST examples, we&rsquo;ll assume a terminal is being used for testing, as such &#39;curl&rsquo; is prepended (a command line tool for testing client-side URL transfers).</p>
 
@@ -331,7 +333,7 @@ The following color codes show the status for each flash pattern.</p>
 <h2 id="logging-in">Logging In</h2>
 <pre class="highlight javascript"><code>
 <span class="c1">// Create a new particle object like so:</span>
-<span class="kd">var</span> <span class="nx">Particle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'particle-api-js'</span><span class="p">);</span> 
+<span class="kd">var</span> <span class="nx">Particle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'particle-api-js'</span><span class="p">);</span> <span class="c1">//Not required for client side use</span>
 <span class="kd">var</span> <span class="nx">particle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Particle</span><span class="p">();</span>
 
 <span class="c1">// Logging in:</span>
@@ -344,22 +346,58 @@ The following color codes show the status for each flash pattern.</p>
   <span class="p">}</span>
 <span class="p">);</span>
 </code></pre>
-<pre class="highlight shell"><code><span class="c"># When using the REST API, instead of logging in once as is done in the JS API, you'll pass the access token with each request</span>
-</code></pre>
 
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p>The Particle JS API uses <a href "https://spring.io/understanding/javascript-promises" target="_blank">promises</a> in the example shown, this enables easy handling of success/failure results for the login request.</p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+No login is required when using the REST API, instead you&rsquo;ll pass your access token through with each request.
 </aside>
+
+<h2 id="setting-charger-mode">Setting Charger Mode</h2>
+
+<p>The ACI has four mode settings:</p>
+
+<table><thead>
+<tr>
+<th>State</th>
+<th>Meaning</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DISABLED</td>
+<td>EVSE Disabled</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ENABLED</td>
+<td>EVSE Enabled (normal mode)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>TIMER</td>
+<td>Timer Mode</td>
+<td>2</td>
+</tr>
+<tr>
+<td>OCPP</td>
+<td>Open Charge Point Protocol Mode (ignores user input)</td>
+<td>3</td>
+</tr>
+</tbody></table>
+
+<p>To change the mode, pass &#39;value&rsquo; with argument &#39;MODE&rsquo; into the &#39;setConfig&rsquo; function</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">fnPr</span> <span class="o">=</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">callFunction</span><span class="p">({</span> <span class="na">deviceId</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">deviceID</span><span class="o">&gt;</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'setConfig'</span><span class="p">,</span> <span class="na">argument</span><span class="p">:</span> <span class="s1">'MODE,'</span><span class="o">+&lt;</span><span class="nx">modeInt</span><span class="o">&gt;</span><span class="p">,</span> <span class="na">auth</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">accessToken</span><span class="o">&gt;</span> <span class="p">});</span>
+
+  <span class="nx">fnPr</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Function called succesfully:'</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'An error occurred:'</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre>
+<pre class="highlight shell"><code>
+</code></pre>
 
 <h1 id="kittens">Kittens</h1>
 
