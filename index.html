@@ -352,7 +352,7 @@ No login is required when using the REST API, instead you&rsquo;ll pass your acc
 </aside>
 
 <h2 id="introduction-to-functions">Introduction to Functions</h2>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">fnPr</span> <span class="o">=</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">callFunction</span><span class="p">({</span> <span class="na">deviceId</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">deviceID</span><span class="o">&gt;</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'setConfig'</span><span class="p">,</span> <span class="na">argument</span><span class="p">:</span> <span class="s1">'&lt;functionName&gt;,'</span><span class="o">+&lt;</span><span class="nx">functionArg</span><span class="o">&gt;</span><span class="p">,</span> <span class="na">auth</span><span class="p">:</span> <span class="o">&lt;</span><span class="nx">accessToken</span><span class="o">&gt;</span> <span class="p">});</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">fnPr</span> <span class="o">=</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">callFunction</span><span class="p">({</span> <span class="na">deviceId</span><span class="p">:</span> <span class="nx">deviceID</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="nx">functionName</span><span class="p">,</span> <span class="na">argument</span><span class="p">:</span> <span class="s1">'argName,'</span><span class="o">+</span><span class="nx">argValue</span><span class="p">,</span> <span class="na">auth</span><span class="p">:</span> <span class="nx">accessToken</span> <span class="p">});</span>
 
   <span class="nx">fnPr</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
     <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
@@ -361,7 +361,11 @@ No login is required when using the REST API, instead you&rsquo;ll pass your acc
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'An error occurred:'</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
     <span class="p">});</span>
 </code></pre>
-<pre class="highlight shell"><code>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+POST /v1/devices/:deviceId/:functionName
+
+<span class="c"># EXAMPLE REQUEST</span>
+<span class="gp">$ </span>curl https://api.particle.io/v1/devices/deviceID/functionName -d <span class="nv">arg</span><span class="o">=</span><span class="s1">'argName,argValue'</span> -d <span class="nv">access_token</span><span class="o">=</span>accessToken
 </code></pre>
 
 <p>To change settings on the ACI, we utilise &#39;device functions&rsquo;.
@@ -404,7 +408,7 @@ Irrelevant of the operation, the process for calling a function is the same, we 
 <p>Instead of copying the same code each time, we&rsquo;ll just document the function name e.g. &#39;setConfig&rsquo;, the argument name e.g. &#39;MODE&rsquo; and the allowable function arguments.</p>
 
 <aside class="notice">
-We pass <argName> and <argValue> together with a comma separation, as these are parsed at the device end. e.g. 'MODE,'0
+We pass `argName` and `argValue` together with a comma separation, as these are parsed at the device end. e.g. 'MODE,'0
 </aside>
 
 <h2 id="setting-charger-mode">Setting Charger Mode</h2>
@@ -415,7 +419,7 @@ We pass <argName> and <argValue> together with a comma separation, as these are 
 
 <h3 id="argument-name">Argument Name:</h3>
 
-<p>&#39;MODE&rsquo;</p>
+<p><code class="prettyprint">MODE</code></p>
 
 <h3 id="allowable-argument-values">Allowable Argument Values</h3>
 
