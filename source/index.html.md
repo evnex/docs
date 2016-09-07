@@ -134,12 +134,12 @@ The ACI is based on the Particle IoT platform, which means you can communicate w
 
 ## Setting Up
 
-If using Node.js:
-> $ npm install particle-api-js
+### If using Node.js:
+`$ npm install particle-api-js`
 
 
-Or bower:
-> bower install particle-api-js
+### Or bower:
+`bower install particle-api-js`
 
 
 Or for client side HTML include:
@@ -179,7 +179,7 @@ particle.login({username: 'email@example.com', password: 'pass'}).then(
 ```
 
 ```shell
-# When using the REST API, you won't log in per se, instead you'll pass the access token with each request
+# When using the REST API, instead of logging in once as is done in the JS API, you'll pass the access token with each request
 ```
 
 
