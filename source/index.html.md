@@ -301,6 +301,26 @@ Charge Current Limit | 6 | 80
 
 <aside class="warning">This value should not be changed unless you know what you're doing. If this value exceeds the current carrying capability of your hardware then damage could occur.</aside>
 
+## Introduction to Event Streams
+
+```javascript
+particle.getEventStream({ deviceId: deviceID, name: 'ACIData', auth: accessToken }).then(function(stream) {
+  stream.on('event', function(data) {
+    console.log("Event: " + data);
+  });
+});
+```
+```shell
+# DEFINITION
+GET /v1/devices/:deviceId/events/:eventPrefix
+
+# EXAMPLE REQUEST
+curl https://api.particle.io/v1/devices/deviceID/events/ACIData?access_token=accessToken
+```
+
+The ACI sends data every 3 seconds via server sent events (SSE).
+To subscribe to these data streams we need to set up an event listener.
+
 # OCPP
 
 
