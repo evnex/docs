@@ -307,6 +307,11 @@ Charge Current Limit | 6 | 80
 particle.getEventStream({ deviceId: deviceID, name: 'ACIData', auth: accessToken }).then(function(stream) {
   stream.on('event', function(data) {
     console.log("Event: " + data);
+    
+    //Optionally use the following to extract data from JSON format 
+    var deviceData = data.data;
+    parsedData = JSON.parse(deviceData);
+    console.log("Parsed Data: " + parsedData);
   });
 });
 ```
@@ -320,6 +325,20 @@ curl https://api.particle.io/v1/devices/deviceID/events/ACIData?access_token=acc
 
 The ACI sends data every 3 seconds via server sent events (SSE).
 To subscribe to these data streams we need to set up an event listener.
+
+The ACI currently sends the following information over SSE:
+
+Name | Description
+---------- | -------
+GPI | General purpose input voltage (V)
+IPAddr | Current device IP address
+ISET | Current setting
+PWR | Instantaneous charge power (W)
+RAM | Available device RAM (Bytes)
+RSSI | Signal strength (Subtract 127 for RSSI)
+STATE | Charger state
+TEMP | Device temperature
+
 
 # OCPP
 
