@@ -137,15 +137,17 @@ The ACI is based on the Particle IoT platform, which means you can communicate w
 ### If using Node.js:
 `$ npm install particle-api-js`
 
-
 ### Or bower:
 `bower install particle-api-js`
 
+### Or for client side HTML include:
+`<script type="text/javascript" src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"> </script>`
 
-Or for client side HTML include:
-> <script type="text/javascript" src="//cdn.jsdelivr.net/particle-api-js/5/particle.min.js"> </script>
+<aside class="notice">
+The above operations are necessary only when using the JS API.
+</aside>
 
-The API host is "https://api.particle.io", all requests are encrypted via TLS.
+The REST API host is "https://api.particle.io", all requests are encrypted via TLS.
 
 For our REST examples, we'll assume a terminal is being used for testing, as such 'curl' is prepended (a command line tool for testing client-side URL transfers).
 
@@ -164,7 +166,7 @@ In the examples below replace '1234' with your own access token.
 ```javascript
 
 // Create a new particle object like so:
-var Particle = require('particle-api-js'); 
+var Particle = require('particle-api-js'); //Not required for client side use
 var particle = new Particle();
 
 // Logging in:
@@ -177,23 +179,39 @@ particle.login({username: 'email@example.com', password: 'pass'}).then(
   }
 );
 ```
-
-```shell
-# When using the REST API, instead of logging in once as is done in the JS API, you'll pass the access token with each request
-```
-
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+The Particle JS API uses <a href "https://spring.io/understanding/javascript-promises" target="_blank">promises</a> in the example shown, this enables easy handling of success/failure results for the login request.
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+No login is required when using the REST API, instead you'll pass your access token through with each request.
 </aside>
+
+## Setting Charger Mode
+
+The ACI has four mode settings:
+
+State | Meaning | Value
+---------- | ------- | -------
+DISABLED   | EVSE Disabled | 0
+ENABLED  | EVSE Enabled (normal mode) | 1
+TIMER   | Timer Mode | 2
+OCPP   | Open Charge Point Protocol Mode (ignores user input) | 3
+
+To change the mode, pass 'value' with argument 'MODE' into the 'setConfig' function
+
+```javascript
+var fnPr = particle.callFunction({ deviceId: <deviceID>, name: 'setConfig', argument: 'MODE,'+<modeInt>, auth: <accessToken> });
+
+  fnPr.then(
+    function(data) {
+      console.log('Function called succesfully:', data);
+    }, function(err) {
+      console.log('An error occurred:', err);
+    });
+```
+
+```shell
+
+```
 
 # Kittens
 
