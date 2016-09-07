@@ -186,7 +186,7 @@ No login is required when using the REST API, instead you'll pass your access to
 ## Introduction to Functions
 
 ```javascript
-var fnPr = particle.callFunction({ deviceId: <deviceID>, name: 'setConfig', argument: '<functionName>,'+<functionArg>, auth: <accessToken> });
+var fnPr = particle.callFunction({ deviceId: deviceID, name: functionName, argument: 'argName,'+argValue, auth: accessToken });
 
   fnPr.then(
     function(data) {
@@ -197,7 +197,11 @@ var fnPr = particle.callFunction({ deviceId: <deviceID>, name: 'setConfig', argu
 ```
 
 ```shell
+# DEFINITION
+POST /v1/devices/:deviceId/:functionName
 
+# EXAMPLE REQUEST
+$ curl https://api.particle.io/v1/devices/deviceID/functionName -d arg='argName,argValue' -d access_token=accessToken
 ```
 
 To change settings on the ACI, we utilise 'device functions'.
@@ -214,7 +218,7 @@ argValue | The integer value of the argument to pass to the function | 0
 Instead of copying the same code each time, we'll just document the function name e.g. 'setConfig', the argument name e.g. 'MODE' and the allowable function arguments.
 
 <aside class="notice">
-We pass <argName> and <argValue> together with a comma separation, as these are parsed at the device end. e.g. 'MODE,'0
+We pass `argName` and `argValue` together with a comma separation, as these are parsed at the device end. e.g. 'MODE,'0
 </aside>
 
 ## Setting Charger Mode
@@ -225,7 +229,7 @@ We pass <argName> and <argValue> together with a comma separation, as these are 
 
 ### Argument Name:
 
-'MODE'
+`MODE`
 
 ### Allowable Argument Values
 
