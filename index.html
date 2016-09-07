@@ -536,6 +536,11 @@ The J1772 standard allows between 6 - 80A. If you attempt to set the current out
 <pre class="highlight javascript"><code><span class="nx">particle</span><span class="p">.</span><span class="nx">getEventStream</span><span class="p">({</span> <span class="na">deviceId</span><span class="p">:</span> <span class="nx">deviceID</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'ACIData'</span><span class="p">,</span> <span class="na">auth</span><span class="p">:</span> <span class="nx">accessToken</span> <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">stream</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">stream</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'event'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Event: "</span> <span class="o">+</span> <span class="nx">data</span><span class="p">);</span>
+
+    <span class="c1">//Optionally use the following to extract data from JSON format </span>
+    <span class="kd">var</span> <span class="nx">deviceData</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+    <span class="nx">parsedData</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">deviceData</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Parsed Data: "</span> <span class="o">+</span> <span class="nx">parsedData</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre>
@@ -548,6 +553,48 @@ curl https://api.particle.io/v1/devices/deviceID/events/ACIData?access_token<spa
 
 <p>The ACI sends data every 3 seconds via server sent events (SSE).
 To subscribe to these data streams we need to set up an event listener.</p>
+
+<p>The ACI currently sends the following information over SSE:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>GPI</td>
+<td>General purpose input voltage (V)</td>
+</tr>
+<tr>
+<td>IPAddr</td>
+<td>Current device IP address</td>
+</tr>
+<tr>
+<td>ISET</td>
+<td>Current setting</td>
+</tr>
+<tr>
+<td>PWR</td>
+<td>Instantaneous charge power (W)</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>Available device RAM (Bytes)</td>
+</tr>
+<tr>
+<td>RSSI</td>
+<td>Signal strength (Subtract 127 for RSSI)</td>
+</tr>
+<tr>
+<td>STATE</td>
+<td>Charger state</td>
+</tr>
+<tr>
+<td>TEMP</td>
+<td>Device temperature</td>
+</tr>
+</tbody></table>
 
 <h1 id="ocpp">OCPP</h1>
 
