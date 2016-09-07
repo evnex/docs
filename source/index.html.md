@@ -160,6 +160,7 @@ The easiest way to find your access token is by logging into the dashboard at da
 <aside class="warning">This access token is the key to your device and shouldn't be shared.</aside>
 
 ## Logging In
+
 ```javascript
 // Create a new particle object like so:
 var Particle = require('particle-api-js'); //Not required for client side use
@@ -182,6 +183,7 @@ No login is required when using the REST API, instead you'll pass your access to
 </aside>
 
 ## Introduction to Functions
+
 ```javascript
 var fnPr = particle.callFunction({ deviceId: deviceID, name: functionName, argument: 'argName,'+argValue, auth: accessToken });
 
@@ -220,6 +222,7 @@ We pass `argName` and `argValue` together with a comma separation, as these are 
 
 ## Setting Charger Mode
 > This will set the charger mode to 'disabled'
+
 ```javascript
 var fnPr = particle.callFunction({ deviceId: deviceID[selectedDeviceIndex], name: 'setConfig', argument: 'MODE,'+0, auth: accessToken });
 
