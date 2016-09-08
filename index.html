@@ -324,27 +324,34 @@ The above operations are necessary only when using the JS API.
 
 <p>Each EVNEX account has an associated unique access token that is used to authenticate all API requests. Your access token will expire every 90 days.</p>
 
-<p>The easiest way to find your access token is by logging into the dashboard at dashboard.evnex.io, you&rsquo;ll find it on the first page.</p>
+<p>The easiest way to find your access token is by logging into the <a href="https://dashboard.evnex.io>dashboard</a>, you&rsquo;ll find it on the first page. Alternatively, see the next section for how to obtain this directly via API.</p>
 
 <aside class="warning">This access token is the key to your device and shouldn&rsquo;t be shared.</aside>
 
 <h2 id="logging-in">Logging In</h2>
-<pre class="highlight javascript"><code><span class="c1">// Create a new particle object like so:</span>
-<span class="kd">var</span> <span class="nx">Particle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'particle-api-js'</span><span class="p">);</span> <span class="c1">//Not required for client side use</span>
-<span class="kd">var</span> <span class="nx">particle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Particle</span><span class="p">();</span>
 
-<span class="c1">// Logging in:</span>
-<span class="nx">particle</span><span class="p">.</span><span class="nx">login</span><span class="p">({</span><span class="na">username</span><span class="p">:</span> <span class="s1">'email@example.com'</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="s1">'pass'</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span>
-  <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'API call completed on promise resolve: '</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">access_token</span><span class="p">);</span>
-  <span class="p">},</span>
-  <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'API call completed on promise fail: '</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">);</span>
-</code></pre>
+<blockquote>
+<p>Use either the JS or REST API to obtain your access token:
+&ldquo;`javascript
+// Create a new particle object like so:
+var Particle = require(&#39;particle-api-js&rsquo;); //Not required for client side use
+var particle = new Particle();</p>
+</blockquote>
 
-<p>The Particle JS API uses <a href="https://spring.io/understanding/javascript-promises" target="_blank">promises</a>, in the example shown this enables easy handling of success/failure results for the login request.</p>
+<p>// Logging in:
+particle.login({username: &#39;email@example.com&rsquo;, password: &#39;pass&rsquo;}).then(
+  function(data){
+    console.log(&#39;API call completed on promise resolve: &rsquo;, data.body.access_token);
+  },
+  function(err) {
+    console.log(&#39;API call completed on promise fail: &rsquo;, err);
+  }
+);
+<code class="prettyprint">
+</code>shell
+$ curl https://api.particle.io/oauth/token -u particle:particle -d grant_type=password -d username=gary@example.com -d password=SuperSecret
+&rdquo;`
+The Particle JS API uses <a href="https://spring.io/understanding/javascript-promises" target="_blank">promises</a>, in the example shown this enables easy handling of success/failure results for the login request.</p>
 
 <aside class="notice">
 No login is required when using the REST API, instead you&rsquo;ll pass your access token through with each request.
