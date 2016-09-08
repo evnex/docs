@@ -347,14 +347,14 @@ The above operations are necessary only when using the JS API.
   <span class="p">}</span>
 <span class="p">);</span>
 </code></pre>
-<pre class="highlight shell"><code><span class="gp">$ </span>curl https://api.particle.io/oauth/token -u particle:particle -d <span class="nv">grant_type</span><span class="o">=</span>password -d <span class="nv">username</span><span class="o">=</span>gary@example.com -d <span class="nv">password</span><span class="o">=</span>SuperSecret
+<pre class="highlight shell"><code><span class="c"># DEFINTION</span>
+POST /oauth/token
+
+<span class="c"># EXAMPLE REQUEST</span>
+<span class="gp">$ </span>curl https://api.particle.io/oauth/token -u particle:particle -d <span class="nv">grant_type</span><span class="o">=</span>password -d <span class="nv">username</span><span class="o">=</span>gary@example.com -d <span class="nv">password</span><span class="o">=</span>SuperSecret
 </code></pre>
 
 <p>The Particle JS API uses <a href="https://spring.io/understanding/javascript-promises" target="_blank">promises</a>, in the example shown this enables easy handling of success/failure results for the login request.</p>
-
-<aside class="notice">
-No login is required when using the REST API, instead you&rsquo;ll pass your access token through with each request.
-</aside>
 
 <h2 id="listing-devices">Listing Devices</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">devicesPr</span> <span class="o">=</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">listDevices</span><span class="p">({</span> <span class="na">auth</span><span class="p">:</span> <span class="nx">accessToken</span> <span class="p">});</span>
@@ -575,11 +575,13 @@ The J1772 standard allows between 6 - 80A. If you attempt to set the current out
 GET /v1/devices/:deviceId/events/:eventPrefix
 
 <span class="c"># EXAMPLE REQUEST</span>
-curl https://api.particle.io/v1/devices/deviceID/events/ACIData?access_token<span class="o">=</span>accessToken
+<span class="gp">$ </span>curl https://api.particle.io/v1/devices/deviceID/events/ACIData?access_token<span class="o">=</span>accessToken
 </code></pre>
 
 <p>The ACI sends data every 3 seconds via server sent events (SSE).
 To subscribe to these data streams we need to set up an event listener.</p>
+
+<h3 id="sse-data">SSE Data</h3>
 
 <p>The ACI currently sends the following information over SSE:</p>
 
@@ -615,11 +617,75 @@ To subscribe to these data streams we need to set up an event listener.</p>
 </tr>
 <tr>
 <td>STATE</td>
-<td>Charger state</td>
+<td>Charger state (See below)</td>
 </tr>
 <tr>
 <td>TEMP</td>
-<td>Device temperature</td>
+<td>Device temperature (°C)</td>
+</tr>
+</tbody></table>
+
+<h3 id="charger-states">Charger States</h3>
+
+<p>The &#39;STATE&rsquo; value defines the current state of the charging system</p>
+
+<table><thead>
+<tr>
+<th>State</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Disabled</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Sleeping</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Diode Check Failed</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Over Temperature</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Stuck Relay</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Ground Fault</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Vehicle Disconnected (J1772-A)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Vehicle Connected - EVSE not ready to supply (J1772-B)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Vehicle Connected - Ready to accept energy (J1772-C)</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Vehicle Connected - Ready to accept energy - Vent required (J1772-D)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Error - Pilot Voltage 0V (J1772-E)</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Error - Pilot Voltage -12V (J1772-F)</td>
+</tr>
+<tr>
+<td>12</td>
+<td>State Undefined/Unknown</td>
 </tr>
 </tbody></table>
 
