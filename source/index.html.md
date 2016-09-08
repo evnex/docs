@@ -349,11 +349,13 @@ particle.getEventStream({ deviceId: deviceID, name: 'ACIData', auth: accessToken
 GET /v1/devices/:deviceId/events/:eventPrefix
 
 # EXAMPLE REQUEST
-curl https://api.particle.io/v1/devices/deviceID/events/ACIData?access_token=accessToken
+$ curl https://api.particle.io/v1/devices/deviceID/events/ACIData?access_token=accessToken
 ```
 
 The ACI sends data every 3 seconds via server sent events (SSE).
 To subscribe to these data streams we need to set up an event listener.
+
+### SSE Data
 
 The ACI currently sends the following information over SSE:
 
@@ -365,9 +367,28 @@ ISET | Current setting
 PWR | Instantaneous charge power (W)
 RAM | Available device RAM (Bytes)
 RSSI | Signal strength (Subtract 127 for RSSI)
-STATE | Charger state
-TEMP | Device temperature
+STATE | Charger state (See below)
+TEMP | Device temperature (°C)
 
+### Charger States
+
+The 'STATE' value defines the current state of the charging system
+
+State | Description
+---------- | -------
+0 | Disabled  
+1 | Sleeping
+2 | Diode Check Failed
+3 | Over Temperature
+4 | Stuck Relay
+5 | Ground Fault
+6 | Vehicle Disconnected (J1772-A)
+7 | Vehicle Connected - EVSE not ready to supply (J1772-B)
+8 | Vehicle Connected - Ready to accept energy (J1772-C)
+9 | Vehicle Connected - Ready to accept energy - Vent required (J1772-D)
+10 | Error - Pilot Voltage 0V (J1772-E)
+11 | Error - Pilot Voltage -12V (J1772-F)
+12 | State Undefined/Unknown
 
 # OCPP
 
