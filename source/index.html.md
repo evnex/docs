@@ -155,12 +155,13 @@ For our REST examples, we'll assume a terminal is being used for testing, as suc
 
 Each EVNEX account has an associated unique access token that is used to authenticate all API requests. Your access token will expire every 90 days.
 
-The easiest way to find your access token is by logging into the dashboard at dashboard.evnex.io, you'll find it on the first page.
+The easiest way to find your access token is by logging into the <a href="https://dashboard.evnex.io>dashboard</a>, you'll find it on the first page. Alternatively, see the next section for how to obtain this directly via API.
 
 <aside class="warning">This access token is the key to your device and shouldn't be shared.</aside>
 
 ## Logging In
 
+> Use either the JS or REST API to obtain your access token:
 ```javascript
 // Create a new particle object like so:
 var Particle = require('particle-api-js'); //Not required for client side use
@@ -175,6 +176,9 @@ particle.login({username: 'email@example.com', password: 'pass'}).then(
     console.log('API call completed on promise fail: ', err);
   }
 );
+```
+```shell
+$ curl https://api.particle.io/oauth/token -u particle:particle -d grant_type=password -d username=gary@example.com -d password=SuperSecret
 ```
 The Particle JS API uses <a href="https://spring.io/understanding/javascript-promises" target="_blank">promises</a>, in the example shown this enables easy handling of success/failure results for the login request.
 
