@@ -179,6 +179,10 @@ particle.login({username: 'email@example.com', password: 'pass'}).then(
 );
 ```
 ```shell
+# DEFINTION
+POST /oauth/token
+
+# EXAMPLE REQUEST
 $ curl https://api.particle.io/oauth/token -u particle:particle -d grant_type=password -d username=gary@example.com -d password=SuperSecret
 ```
 The Particle JS API uses <a href="https://spring.io/understanding/javascript-promises" target="_blank">promises</a>, in the example shown this enables easy handling of success/failure results for the login request.
