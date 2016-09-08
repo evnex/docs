@@ -369,7 +369,7 @@ GET /v1/devices
 <span class="gp">$ </span>curl https://api.particle.io/v1/devices<span class="se">\?</span>access_token<span class="se">\=</span>accessToken
 </code></pre>
 
-<p>All of the chargers associated with your account can be listed using these requests.</p>
+<p>All of the chargers associated with your account can be listed using this request.</p>
 
 <h2 id="introduction-to-functions">Introduction to Functions</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">fnPr</span> <span class="o">=</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">callFunction</span><span class="p">({</span> <span class="na">deviceId</span><span class="p">:</span> <span class="nx">deviceID</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="nx">functionName</span><span class="p">,</span> <span class="na">argument</span><span class="p">:</span> <span class="s1">'argName,'</span><span class="o">+</span><span class="nx">argValue</span><span class="p">,</span> <span class="na">auth</span><span class="p">:</span> <span class="nx">accessToken</span> <span class="p">});</span>
