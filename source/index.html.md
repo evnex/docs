@@ -183,10 +183,6 @@ $ curl https://api.particle.io/oauth/token -u particle:particle -d grant_type=pa
 ```
 The Particle JS API uses <a href="https://spring.io/understanding/javascript-promises" target="_blank">promises</a>, in the example shown this enables easy handling of success/failure results for the login request.
 
-<aside class="notice">
-No login is required when using the REST API, instead you'll pass your access token through with each request.
-</aside>
-
 ## Listing Devices
 
 ```javascript
