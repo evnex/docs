@@ -182,6 +182,30 @@ The Particle JS API uses <a href="https://spring.io/understanding/javascript-pro
 No login is required when using the REST API, instead you'll pass your access token through with each request.
 </aside>
 
+## Listing Devices
+
+```javascript
+var devicesPr = particle.listDevices({ auth: accessToken });
+
+devicesPr.then(
+  function(devices){
+    console.log('Devices: ', devices);
+  },
+  function(err) {
+    console.log('List devices call failed: ', err);
+  }
+);
+```
+```shell
+# DEFINITION
+GET /v1/devices
+
+# EXAMPLE REQUEST
+$ curl https://api.particle.io/v1/devices\?access_token\=accessToken
+```
+
+All of the chargers associated with your account can be listed using these requests.
+
 ## Introduction to Functions
 
 ```javascript
