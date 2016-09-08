@@ -204,7 +204,7 @@ GET /v1/devices
 $ curl https://api.particle.io/v1/devices\?access_token\=accessToken
 ```
 
-All of the chargers associated with your account can be listed using these requests.
+All of the chargers associated with your account can be listed using this request.
 
 ## Introduction to Functions
 
