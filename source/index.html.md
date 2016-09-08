@@ -25,16 +25,16 @@ You'll find everything here, right through from setting up and configuring your 
 <img src="images/supportedbrowsers.png">
 
 <aside class="notice">
-Internet Explorer/Edge is not currently supported as it lacks support for server sent events. This feature is currently <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/serversenteventseventsource/">under consideration</a> for Microsoft Edge.
+Internet Explorer/Edge is not currently supported for our web dashboard as it lacks support for server sent events. This feature is currently <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/serversenteventseventsource/">under consideration</a> for Microsoft Edge.
 </aside>
 
 # EVSE Basics
 
-Electric Vehicle Supply Equipment (EVSE) is the link between the wall plug and your electric vehicles charge system. Although often referred to as a ‘charger’ an AC EVSE does not directly manage the charging of your vehicle battery, this is done by electronics within the vehicle.
+Electric Vehicle Supply Equipment (EVSE) is the link between the grid and your electric vehicles charge system. Although often referred to as a ‘charger’ an AC EVSE does not directly manage the charging of your vehicle battery, this is done by electronics within the vehicle.
 
 What an EVSE does do is ensure that the process of plugging in, charging and unplugging is managed in a safe, controlled manner. In short, the EVSE is responsible for communicating with the vehicle how much power it is able to provide, while providing safety features that mean the cord is never electrified when not attached to the vehicle. It will also disable power should a fault occur inside the vehicle.
 
-For more information, one of the most common charge standards is described below.
+For more information, refer to <a href="https://en.wikipedia.org/wiki/IEC_62196" target="_blank">IEC 62196</a>
 
 ## Connection Types
 
@@ -104,7 +104,7 @@ Todo
 
 # Interface
 
-Todo
+<img src="images/displayinterface.png">
 
 # GPI
 
