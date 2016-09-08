@@ -162,6 +162,7 @@ The easiest way to find your access token is by logging into the <a href="https:
 ## Logging In
 
 > Use either the JS or REST API to obtain your access token:
+
 ```javascript
 // Create a new particle object like so:
 var Particle = require('particle-api-js'); //Not required for client side use
