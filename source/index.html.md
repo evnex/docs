@@ -155,7 +155,7 @@ For our REST examples, we'll assume a terminal is being used for testing, as suc
 
 Each EVNEX account has an associated unique access token that is used to authenticate all API requests. Your access token will expire every 90 days.
 
-The easiest way to find your access token is by logging into the <a href="https://dashboard.evnex.io>dashboard</a>, you'll find it on the first page. Alternatively, see the next section for how to obtain this directly via API.
+The easiest way to find your access token is by logging into the <a href="https://dashboard.evnex.io">dashboard</a>, you'll find it on the first page. Alternatively, see the next section for how to obtain this directly via API.
 
 <aside class="warning">This access token is the key to your device and shouldn't be shared.</aside>
 
