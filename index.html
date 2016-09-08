@@ -350,6 +350,27 @@ The above operations are necessary only when using the JS API.
 No login is required when using the REST API, instead you&rsquo;ll pass your access token through with each request.
 </aside>
 
+<h2 id="listing-devices">Listing Devices</h2>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">devicesPr</span> <span class="o">=</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">listDevices</span><span class="p">({</span> <span class="na">auth</span><span class="p">:</span> <span class="nx">accessToken</span> <span class="p">});</span>
+
+<span class="nx">devicesPr</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">devices</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Devices: '</span><span class="p">,</span> <span class="nx">devices</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'List devices call failed: '</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">);</span>
+</code></pre>
+<pre class="highlight shell"><code><span class="c"># DEFINITION</span>
+GET /v1/devices
+
+<span class="c"># EXAMPLE REQUEST</span>
+<span class="gp">$ </span>curl https://api.particle.io/v1/devices<span class="se">\?</span>access_token<span class="se">\=</span>accessToken
+</code></pre>
+
+<p>All of the chargers associated with your account can be listed using these requests.</p>
+
 <h2 id="introduction-to-functions">Introduction to Functions</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">fnPr</span> <span class="o">=</span> <span class="nx">particle</span><span class="p">.</span><span class="nx">callFunction</span><span class="p">({</span> <span class="na">deviceId</span><span class="p">:</span> <span class="nx">deviceID</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="nx">functionName</span><span class="p">,</span> <span class="na">argument</span><span class="p">:</span> <span class="s1">'argName,'</span><span class="o">+</span><span class="nx">argValue</span><span class="p">,</span> <span class="na">auth</span><span class="p">:</span> <span class="nx">accessToken</span> <span class="p">});</span>
 
